@@ -18,15 +18,6 @@ podman run \
     nvidia-smi
 ```
 
-## Automatic1111
-
-```bash
-git clone https://github.com/AbdBarho/stable-diffusion-webui-docker/
-cd stable-diffusion-webui-docker/
-
-```
-
-
 ## ComfyUI
 
 ```bash
