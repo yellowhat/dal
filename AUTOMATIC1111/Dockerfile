@@ -62,6 +62,6 @@ ENV CLI_ARGS=""
 
 EXPOSE 7860
 
-ENTRYPOINT ["/docker/entrypoint.sh"]
+ENTRYPOINT ["bash", "/docker/entrypoint.sh"]
 
 CMD python -u webui.py --listen --port 7860 ${CLI_ARGS}
