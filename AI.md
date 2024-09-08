@@ -18,33 +18,33 @@ podman run \
     nvidia-smi
 ```
 
-## AUTOMATIC1111
-
-By default uses `sd-v1.5`, (VRAM 2.2 GB).
-
 ## ComfyUI
 
 ## SwarmUI
 
 By default uses `OfficialStableDiffusion/sd_xl_base_1.0` (VRAM 5.5 GB).
 
-To use SD3-Medium (VRAM 5.5 GB):
+To use `SD3-Medium` (VRAM 5.5 GB):
 
 1. Login to [stable-diffusion-3-medium](https://huggingface.co/stabilityai/stable-diffusion-3-medium), Accept
 2. Download [sd3_medium.safetensors](https://huggingface.co/stabilityai/stable-diffusion-3-medium/resolve/main/sd3_medium.safetensors?download=true) to `Models/Stable-Diffusion`
 3. Start SwarmUI > `Generate` > `Models`, click on SD3-Medium icon
-4. On the parameters view:
-    * "Steps" to 28
-    * "CFG scale" to 5
 
-To use FLUX1 (VRAM 8GB is not enought):
+To use `FLUX1`:
 
 1. Start SwarmUI
-2. "Utilities" > "Model Downloader":
-    * URL: https://huggingface.co/lllyasviel/flux1-dev-bnb-nf4/blob/main/flux1-dev-bnb-nf4-v2.safetensors
+2. `Utilities` > `Model Downloader`:
+    * 24GB [dev]: https://huggingface.co/black-forest-labs/FLUX.1-dev/blob/main/flux1-dev.safetensors
+    * 24GB [schenll]: https://huggingface.co/black-forest-labs/FLUX.1-schnell/blob/main/flux1-schnell.safetensors
+    * 12GB: https://huggingface.co/lllyasviel/flux1-dev-bnb-nf4/blob/main/flux1-dev-bnb-nf4-v2.safetensors
+    * Or copy to `Models/Stable-Diffusion`
 3. Start SwarmUI > `Generate` > `Models`, click on `flux1` icon
 
-## Sygil WebUI
+## AUTOMATIC1111 (deprecated?)
+
+By default uses `sd-v1.5`, (VRAM 2.2 GB).
+
+## Sygil WebUI (deprecated?)
 
 ```bash
 mkdir user_data
@@ -57,8 +57,8 @@ podman run \
     -e STREAMLIT_SERVER_HEADLESS=true \
     -e "WEBUI_SCRIPT=webui_streamlit.py" \
     -e "VALIDATE_MODELS=false" \
-    -v "${PWD}/user_data:/sd/user_data/" \
-    -v "${PWD}/outputs:/sd/outputs" \
+    -v ./user_data:/sd/user_data \
+    -v ./outputs:/sd/outputs \
     --device nvidia.com/gpu=all \
     --security-opt=label=disable \
     docker.io/tukirito/sygil-webui:latest
