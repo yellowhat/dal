@@ -31,15 +31,16 @@ auto: ## Start AUTOMATIC1111 Web UI
 
 .PHONY: comfyui
 comfyui: ## Start ComfyUI
-	mkdir -p workspace
+	mkdir -p workspace models
 	podman run \
 		--interactive \
 		--tty \
 		--rm \
 		--device nvidia.com/gpu=all \
-		--publish 8080:7860 \
+		--publish 8080:8188 \
 		--env WEB_ENABLE_AUTH=false \
 		--volume ./workspace:/workspace:z \
+		--volume ./models:/opt/ComfyUI/models:z \
 		--security-opt=label=disable \
 		ghcr.io/ai-dock/comfyui:v2-cuda-12.1.1-base-22.04-v0.2.0
 
