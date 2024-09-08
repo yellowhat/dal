@@ -29,6 +29,20 @@ auto: ## Start AUTOMATIC1111 Web UI
 		--security-opt=label=disable \
 		automatic:local
 
+.PHONY: comfyui
+comfyui: ## Start ComfyUI
+	mkdir -p workspace
+	podman run \
+		--interactive \
+		--tty \
+		--rm \
+		--device nvidia.com/gpu=all \
+		--publish 8080:7860 \
+		--env WEB_ENABLE_AUTH=false \
+		--volume ./workspace:/workspace:z \
+		--security-opt=label=disable \
+		ghcr.io/ai-dock/comfyui:v2-cuda-12.1.1-base-22.04-v0.2.0
+
 .PHONY: swarmui
 swarmui: ## Start SwarmUI
 	rm -rf SwarmUI
