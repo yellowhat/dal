@@ -20,17 +20,25 @@ podman run \
 
 ## ComfyUI
 
+To use custom models copy to `models/checkpoints`:
+
+* SD1.5: `v1-5-pruned-emaonly.ckpt`
+* [sd_xl_turbo_1.0_fp16.safetensors](https://huggingface.co/stabilityai/sdxl-turbo/blob/main/sd_xl_turbo_1.0_fp16.safetensors)
+* [sd3_medium_incl_clips_t5xxlfp8.safetensors](https://huggingface.co/stabilityai/stable-diffusion-3-medium/blob/main/sd3_medium_incl_clips_t5xxlfp8.safetensors)
+
+To use FLUX1: `Manager` > `Model Manager` > Install `city96/flux1-dev-Q2_K.gguf`
+
 ## SwarmUI
 
 By default uses `OfficialStableDiffusion/sd_xl_base_1.0` (VRAM 5.5 GB).
 
-To use `SD3-Medium` (VRAM 5.5 GB):
+To use SD3-Medium (VRAM 5.5 GB):
 
 1. Login to [stable-diffusion-3-medium](https://huggingface.co/stabilityai/stable-diffusion-3-medium), Accept
 2. Download [sd3_medium.safetensors](https://huggingface.co/stabilityai/stable-diffusion-3-medium/resolve/main/sd3_medium.safetensors?download=true) to `Models/Stable-Diffusion`
 3. Start SwarmUI > `Generate` > `Models`, click on SD3-Medium icon
 
-To use `FLUX1`:
+To use FLUX1:
 
 1. Start SwarmUI
 2. `Utilities` > `Model Downloader`:
