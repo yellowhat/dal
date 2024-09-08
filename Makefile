@@ -29,6 +29,31 @@ auto: ## Start AUTOMATIC1111 Web UI
 		--security-opt=label=disable \
 		automatic:local
 
+.PHONY: swarmui
+swarmui: ## Start SwarmUI
+	rm -rf SwarmUI
+	git clone https://github.com/mcmonkeyprojects/SwarmUI.git --depth 1
+	podman build -t swarmui:local SwarmUI
+	mkdir -p \
+		Data \
+		dlbackend \
+		Models \
+		Output \
+		CustomWorkflows
+	podman run \
+		--interactive \
+		--tty \
+		--rm \
+		--device nvidia.com/gpu=all \
+		--publish 8080:7801 \
+		--volume ./Data:/Data:z \
+		--volume ./dlbackend:/dlbackend:z \
+		--volume ./Models:/Models:z \
+		--volume ./Output:/Output:z \
+		--volume ./CustomWorkflows:/src/BuiltinExtensions/ComfyUIBackend/CustomWorkflows:z \
+		--security-opt=label=disable \
+		swarmui:local
+
 .PHONY: help
 help: ## Makefile Help Page
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n\nTargets:\n"} /^[\/\%a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-21s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST) 2>/dev/null
